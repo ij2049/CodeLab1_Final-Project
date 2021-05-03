@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         //0 is left click and 1 is right click 2 middle click
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !Extensions.IsMouseOverUI())
             OnClick();
         
         if (turning && transform.rotation != targetRot)
@@ -80,6 +80,7 @@ public class PlayerScript : MonoBehaviour
         turning = false;
         
         agent.SetDestination(targetPosition);
+        DialogSystem.Instance.HideDialog();
     }
 
     public void SetDirection(Vector3 targetDirection)
